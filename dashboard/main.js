@@ -27,7 +27,7 @@ $("#btnNuevo").click(function(){
     $("#formPersonas").trigger("reset");
     $(".modal-header").css("background-color", "#1cc88a");
     $(".modal-header").css("color", "white");
-    $(".modal-title").text("Nueva Persona");            
+    $(".modal-title").text("Crear Empleado");            
     $("#modalCRUD").modal("show");        
     id=null;
     opcion = 1; //alta
@@ -76,22 +76,24 @@ $(document).on("click", ".btnBorrar", function(){
     
 $("#formPersonas").submit(function(e){
     e.preventDefault();    
+    documento = $.trim($("#documento").val());
     nombre = $.trim($("#nombre").val());
-    pais = $.trim($("#pais").val());
-    edad = $.trim($("#edad").val());    
+    celular = $.trim($("#celular").val());
+    nombreusaurio = $.trim($("#nombreusaurio").val());    
+    password = $.trim($("#password").val());    
     $.ajax({
         url: "bd/crud.php",
         type: "POST",
         dataType: "json",
-        data: {nombre:nombre, pais:pais, edad:edad, id:id, opcion:opcion},
+        data: {documento:documento,nombre:nombre, celular:celular, nombreusaurio:nombreusaurio,password:password, id:id, opcion:opcion},
         success: function(data){  
             console.log(data);
             id = data[0].id;            
+            documento = data[0].documento;    
             nombre = data[0].nombre;
-            pais = data[0].pais;
-            edad = data[0].edad;
-            if(opcion == 1){tablaPersonas.row.add([id,nombre,pais,edad]).draw();}
-            else{tablaPersonas.row(fila).data([id,nombre,pais,edad]).draw();}            
+            celular = data[0].celular;
+            if(opcion == 1){tablaPersonas.row.add([id,documento,nombre,celular]).draw();}
+            else{tablaPersonas.row(fila).data([id,documento,nombre,celular]).draw();}            
         }        
     });
     $("#modalCRUD").modal("hide");    

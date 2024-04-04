@@ -1,22 +1,20 @@
-<?php require_once "vistas/parte_superior.php"?>
-
-<!--INICIO del cont principal-->
-<div class="container">
-    <h1>Contenido principal</h1>
-    
-    
-    
- <?php
-include_once '/bd/conexion.php';
+<?php require_once "vistas/parte_superior.php"?>  
+<?php
+include_once '../bd/conexion.php';
 $objeto = new Conexion();
 $conexion = $objeto->Conectar();
 
-$consulta = "SELECT id, nombre, pais, edad FROM personas";
+$consulta = "SELECT id,documento, nombre,celular,rol FROM personas";
 $resultado = $conexion->prepare($consulta);
 $resultado->execute();
 $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
+
+
+<!--INICIO del cont principal-->
+<div class="container">
+    <h1>Crear empleado</h1>
 
 <div class="container">
         <div class="row">
@@ -34,9 +32,9 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
                         <thead class="text-center">
                             <tr>
                                 <th>Id</th>
-                                <th>Nombre</th>
-                                <th>País</th>                                
-                                <th>Edad</th>  
+                                <th>Documeto</th>
+                                <th>Nombre</th>                                
+                                <th>Celular</th>  
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -46,9 +44,9 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
                             ?>
                             <tr>
                                 <td><?php echo $dat['id'] ?></td>
+                                <td><?php echo $dat['documento'] ?></td>
                                 <td><?php echo $dat['nombre'] ?></td>
-                                <td><?php echo $dat['pais'] ?></td>
-                                <td><?php echo $dat['edad'] ?></td>    
+                                <td><?php echo $dat['celular'] ?></td>    
                                 <td></td>
                             </tr>
                             <?php
@@ -73,20 +71,35 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
         <form id="formPersonas">    
             <div class="modal-body">
                 <div class="form-group">
-                <label for="nombre" class="col-form-label">Nombre:</label>
-                <input type="text" class="form-control" id="nombre">
+                <label for="documento" class="col-form-label">Documeto:</label>
+                <input type="number"  maxlength="20"  class="form-control" id="documento" required>
                 </div>
+
                 <div class="form-group">
-                <label for="pais" class="col-form-label">País:</label>
-                <input type="text" class="form-control" id="pais">
-                </div>                
+                <label for="nombre" class="col-form-label">Nombre:</label>
+                <input type="text" maxlength="30"  class="form-control" id="nombre" required>
+                </div>
+
                 <div class="form-group">
-                <label for="edad" class="col-form-label">Edad:</label>
-                <input type="number" class="form-control" id="edad">
-                </div>            
+                <label for="celular" class="col-form-label">Celular:</label>
+                <input type="text" class="form-control" id="celular" required >
+                </div>
+                <hr/>
+
+                <div class="form-group">
+                <label for="nombreusaurio" class="col-form-label">Nombre de usaurio:</label>
+                <input type="text" maxlength="12" class="form-control" id="nombreusaurio" required >
+                </div>
+                
+                <div class="form-group">
+                <label for="password" class="col-form-label">Contraseña:</label>
+                <input type="password" maxlength="15" class="form-control" id="password" required >
+                </div>
+                
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-light" data-dismiss="modal">Cancelar</button>
+
                 <button type="submit" id="btnGuardar" class="btn btn-dark">Guardar</button>
             </div>
         </form>    

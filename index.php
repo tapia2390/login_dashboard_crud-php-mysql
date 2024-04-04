@@ -5,7 +5,7 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Login con  PHP - Bootstrap 4</title>
+        <title>Casino</title>
 
         <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="estilos.css">
@@ -20,7 +20,7 @@
       <div class="container-login">
         <div class="wrap-login">
             <form class="login-form validate-form" id="formLogin" action="" method="post">
-                <span class="login-form-title">LOGIN</span>
+                <span class="login-form-title">CASINO</span>
                 
                 <div class="wrap-input100" data-validate = "Usuario incorrecto">
                     <input class="input100" type="text" id="usuario" name="usuario" placeholder="Usuario">
